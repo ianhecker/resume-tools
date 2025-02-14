@@ -7,19 +7,19 @@ import (
 	"github.com/ianhecker/resume-tools/internal/skill"
 )
 
-var defaultFilename string = "skills.json"
-
 var skillTemplateCmd = &cobra.Command{
 	Use:   "template",
-	Short: "Generate a fresh template file: " + defaultFilename,
+	Short: "Generate a fresh template file: " + defaultSkillsFilename,
 	Run: func(cmd *cobra.Command, args []string) {
+
 		var skills = make(skill.Skills)
-		skills.AddFromRaw(name, experience.Level(0).String(), 0)
+		err := skills.AddFromRaw("underwater basket weaving", experience.Level(1).String(), 0)
+		checkErr(err)
 
 		bytes, err := skills.MarshalJSON()
 		checkErr(err)
 
-		err = writeFile(defaultFilename, bytes)
+		err = createFile(defaultSkillsFilename, bytes)
 		checkErr(err)
 	},
 }

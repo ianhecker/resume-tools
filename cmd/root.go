@@ -34,6 +34,20 @@ func readFile(filename string) ([]byte, error) {
 	return bytes, nil
 }
 
+func createFile(filename string, bytes []byte) error {
+	file, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	_, err = file.WriteString(string(bytes))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func writeFile(filename string, bytes []byte) error {
 	file, err := os.OpenFile(filename, os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
