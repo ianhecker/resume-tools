@@ -22,7 +22,7 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.AddCommand(addSkillCmd)
+	rootCmd.AddCommand(skillCmd)
 }
 
 func readFile(filename string) ([]byte, error) {

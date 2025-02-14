@@ -11,9 +11,9 @@ var name string
 var levelVar string
 var yearsVar float64
 
-var addSkillCmd = &cobra.Command{
-	Use:   "add-skill",
-	Short: "Add a new skill to your JSON file",
+var skillAddCmd = &cobra.Command{
+	Use:   "add",
+	Short: "Add a new skill to an existing file",
 	Run: func(cmd *cobra.Command, args []string) {
 		bytes, err := readFile(jsonFile)
 		checkErr(err)
@@ -33,12 +33,12 @@ var addSkillCmd = &cobra.Command{
 }
 
 func init() {
-	addSkillCmd.Flags().StringVarP(&jsonFile, "json", "j", "", "path to the JSON file")
+	skillAddCmd.Flags().StringVarP(&jsonFile, "json", "j", "", "path to the JSON file")
 
-	addSkillCmd.Flags().StringVarP(&name, "name", "n", "", "name of skill")
-	addSkillCmd.Flags().Float64VarP(&yearsVar, "years", "y", 0, "years of experience")
-	addSkillCmd.Flags().StringVarP(&levelVar, "level", "l", "novice", "experience level (Novice, Intermediate, Advanced, Expert)")
+	skillAddCmd.Flags().StringVarP(&name, "name", "n", "", "name of skill")
+	skillAddCmd.Flags().Float64VarP(&yearsVar, "years", "y", 0, "years of experience")
+	skillAddCmd.Flags().StringVarP(&levelVar, "level", "l", "novice", "experience level (Novice, Intermediate, Advanced, Expert)")
 
-	addSkillCmd.MarkFlagRequired("json")
-	addSkillCmd.MarkFlagRequired("name")
+	skillAddCmd.MarkFlagRequired("json")
+	skillAddCmd.MarkFlagRequired("name")
 }
