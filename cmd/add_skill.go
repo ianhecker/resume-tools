@@ -33,12 +33,11 @@ var skillAddCmd = &cobra.Command{
 }
 
 func init() {
-	skillAddCmd.Flags().StringVarP(&jsonFile, "json", "j", "", "path to the JSON file")
+	skillAddCmd.Flags().StringVarP(&jsonFile, "json", "j", defaultSkillsFilename, "path to the JSON file")
 
 	skillAddCmd.Flags().StringVarP(&name, "name", "n", "", "name of skill")
 	skillAddCmd.Flags().Float64VarP(&yearsVar, "years", "y", 0, "years of experience")
 	skillAddCmd.Flags().StringVarP(&levelVar, "level", "l", "novice", "experience level (Novice, Intermediate, Advanced, Expert)")
 
-	skillAddCmd.MarkFlagRequired("json")
 	skillAddCmd.MarkFlagRequired("name")
 }
