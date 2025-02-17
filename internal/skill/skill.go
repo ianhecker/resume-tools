@@ -5,23 +5,30 @@ import (
 	"fmt"
 
 	"github.com/ianhecker/resume-tools/internal/experience"
+	"github.com/ianhecker/resume-tools/internal/years"
 )
 
-type Skill string
+type SkillParameters struct {
+	Experience experience.Experience `json:"experience"`
+	Years      years.Years           `json:"years"`
+}
 
-type Skills map[string]experience.Experience
+type Skills map[string]SkillParameters
 
-func (skills Skills) AddFromRaw(name string, l string, y float64) error {
-	experience, err := experience.MakeExperienceFromRaw(l, y)
+func (skills Skills) AddFromRaw(name string, e string, y float64) error {
+	experience, err := experience.MakeExperienceFromString(e)
 	if err != nil {
 		return err
 	}
-	skills.Add(name, experience)
+	years := years.MakeYears(y)
+
+	skills.Add(name, experience, years)
 	return nil
 }
 
-func (skills Skills) Add(name string, experience experience.Experience) {
-	skills[name] = experience
+func (skills Skills) Add(name string, e experience.Experience, y years.Years) {
+	params := SkillParameters{Experience: e, Years: y}
+	skills[name] = params
 }
 
 func (skills *Skills) MarshalJSON() ([]byte, error) {
