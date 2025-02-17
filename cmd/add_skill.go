@@ -8,7 +8,7 @@ import (
 
 var jsonFile string
 var name string
-var levelVar string
+var experienceVar string
 var yearsVar float64
 
 var skillAddCmd = &cobra.Command{
@@ -22,7 +22,7 @@ var skillAddCmd = &cobra.Command{
 		err = skills.UnmarshalJSON(bytes)
 		checkErr(err)
 
-		skills.AddFromRaw(name, levelVar, yearsVar)
+		skills.AddFromRaw(name, experienceVar, yearsVar)
 
 		bytes, err = skills.MarshalJSON()
 		checkErr(err)
@@ -37,7 +37,7 @@ func init() {
 
 	skillAddCmd.Flags().StringVarP(&name, "name", "n", "", "name of skill")
 	skillAddCmd.Flags().Float64VarP(&yearsVar, "years", "y", 0, "years of experience")
-	skillAddCmd.Flags().StringVarP(&levelVar, "level", "l", "novice", "experience level (Novice, Intermediate, Advanced, Expert)")
+	skillAddCmd.Flags().StringVarP(&experienceVar, "experience", "e", "novice", "experience (Novice, Intermediate, Advanced, Expert)")
 
 	skillAddCmd.MarkFlagRequired("name")
 }
