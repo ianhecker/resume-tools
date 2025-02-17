@@ -15,6 +15,10 @@ type SkillParameters struct {
 
 type Skills map[string]SkillParameters
 
+func MakeSkills() Skills {
+	return make(Skills)
+}
+
 func (skills Skills) AddFromRaw(name string, e string, y float64) error {
 	experience, err := experience.MakeExperienceFromString(e)
 	if err != nil {

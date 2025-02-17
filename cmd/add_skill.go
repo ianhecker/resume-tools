@@ -18,7 +18,7 @@ var skillAddCmd = &cobra.Command{
 		bytes, err := readFile(jsonFile)
 		checkErr(err)
 
-		var skills = make(skill.Skills)
+		skills := skill.MakeSkills()
 		err = skills.UnmarshalJSON(bytes)
 		checkErr(err)
 
