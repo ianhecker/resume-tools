@@ -8,18 +8,24 @@ import (
 	"github.com/ianhecker/resume-tools/internal/job"
 )
 
-type Employment map[company.Company][]job.Job
+type Employment map[company.Company]job.Jobs
 
 func MakeEmployment() Employment {
 	return make(Employment)
 }
 
-func (employment Employment) AddJobForCompany(
-	job job.Job,
+func (employment Employment) Add(
 	company company.Company,
+	title job.Title,
+	experience string,
 ) {
-	jobs, _ := employment[company]
-	employment[company] = append(jobs, job)
+	jobs := employment[company]
+	if jobs == nil {
+		jobs = make(job.Jobs)
+	}
+
+	jobs.Add(title, experience)
+	employment[company] = jobs
 }
 
 func (employment Employment) MarshalJSON() ([]byte, error) {
