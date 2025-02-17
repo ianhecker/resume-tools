@@ -10,21 +10,20 @@ import (
 
 var employmentTemplateCmd = &cobra.Command{
 	Use:   "template",
-	Short: "Generate a fresh template file: " + defaultEmploymentFilename,
+	Short: "Generate a fresh template file: " + employmentJSON,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		company := company.MakeCompany("Company Inc")
-
-		experience := []string{"Increased sales by 35%"}
-		job := job.MakeJob("Manager", experience)
+		title := job.MakeTitle("Manager")
+		experience := "Increased sales by 35%"
 
 		employment := employment.MakeEmployment()
-		employment.AddJobForCompany(job, company)
+		employment.Add(company, title, experience)
 
 		bytes, err := employment.MarshalJSON()
 		checkErr(err)
 
-		err = createFile(defaultEmploymentFilename, bytes)
+		err = createFile(employmentJSON, bytes)
 		checkErr(err)
 	},
 }

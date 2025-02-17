@@ -2,7 +2,7 @@ package cmd
 
 import "github.com/spf13/cobra"
 
-var defaultSkillsFilename string = "skills.json"
+var skillsJSON string = "skills.json"
 
 var skillCmd = &cobra.Command{
 	Use:     "skill",

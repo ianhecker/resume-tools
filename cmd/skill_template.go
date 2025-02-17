@@ -9,7 +9,7 @@ import (
 
 var skillTemplateCmd = &cobra.Command{
 	Use:   "template",
-	Short: "Generate a fresh template file: " + defaultSkillsFilename,
+	Short: "Generate a fresh template file: " + skillsJSON,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		var skills = make(skill.Skills)
@@ -19,7 +19,7 @@ var skillTemplateCmd = &cobra.Command{
 		bytes, err := skills.MarshalJSON()
 		checkErr(err)
 
-		err = createFile(defaultSkillsFilename, bytes)
+		err = createFile(skillsJSON, bytes)
 		checkErr(err)
 	},
 }

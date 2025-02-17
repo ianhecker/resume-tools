@@ -2,7 +2,7 @@ package cmd
 
 import "github.com/spf13/cobra"
 
-var defaultEmploymentFilename string = "employment.json"
+var employmentJSON string = "employment.json"
 
 var employmentCmd = &cobra.Command{
 	Use:   "employment",
@@ -10,6 +10,6 @@ var employmentCmd = &cobra.Command{
 }
 
 func init() {
-	// employmentCmd.AddCommand(employmentAddCmd)
+	employmentCmd.AddCommand(employmentAddCmd)
 	employmentCmd.AddCommand(employmentTemplateCmd)
 }
