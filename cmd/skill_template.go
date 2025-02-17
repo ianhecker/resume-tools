@@ -13,7 +13,7 @@ var skillTemplateCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		var skills = make(skill.Skills)
-		err := skills.AddFromRaw("underwater basket weaving", experience.Experience(1).String(), 0)
+		err := skills.AddFromRaw("underwater basket weaving", experience.Novice.String(), 0)
 		checkErr(err)
 
 		bytes, err := skills.MarshalJSON()
