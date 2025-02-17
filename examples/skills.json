@@ -1,10 +1,10 @@
 {
 	"dominoes": {
-		"level": "intermediate",
+		"experience": "intermediate",
 		"years": 2
 	},
 	"underwater basket weaving": {
-		"level": "novice",
+		"experience": "novice",
 		"years": 0
 	}
 }
